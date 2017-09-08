@@ -17,8 +17,6 @@ class Item(object):
 		self.price = None
 		self._id = uuid.uuid4().hex if _id is None else _id
 
-
-
 	def __repr__(self):
 		return "<Item {} with URL {}>".format(self.name, self.url)
 
