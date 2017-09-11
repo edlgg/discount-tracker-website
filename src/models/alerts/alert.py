@@ -82,3 +82,7 @@ class Alert(object):
               "to": ["delagarzaguerra@gmail.com"],
               "subject": "Hello",
               "text": "Testing some Mailgun awesomeness!"})
+
+	@classmethod
+	def find_by_user_email(cls, user_email):
+		return [cls(**elem) for elem in Database.find(AlertConstants.COLLECTION, {'user_email':user_email})]

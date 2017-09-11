@@ -9,7 +9,7 @@ user_blueprint = Blueprint('users', __name__)
 def login_user():
 	if request.method == 'POST':
 		email = request.form['email']
-		password = request.form['hashed']
+		password = request.form['password']
 
 		try:
 			if User.is_login_valid(email, password):
@@ -24,7 +24,7 @@ def login_user():
 def register_user():
 	if request.method == 'POST':
 		email = request.form['email']
-		password = request.form['hashed']
+		password = request.form['password']
 
 		try:
 			if User.register_user(email, password):
@@ -37,11 +37,15 @@ def register_user():
 
 @user_blueprint.route('/alerts')
 def user_alerts():
-	return "This is the alerts page."
+    user = User.find_by_email(email = session['email'])
+    alerts = user.get_alerts
+
+    return render_template('users/alerts.jinja2', alerts = alerts)
 
 @user_blueprint.route('/logout')
 def logout_user():
-	pass
+	session['email'] = None
+	return redirect(url_for('home'))
 
 @user_blueprint.route('/check_alerts/<string:user_id>')
 def check_user_alerts(user_id):
