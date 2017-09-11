@@ -27,13 +27,26 @@ class Alert(object):
 				"text":"We've found a deal! (link here)"
 			}
 		)
+	
+	def send_simple_message(self):
+		return requests.post(
+        "https://api.mailgun.net/v3/samples.mailgun.org/messages",
+        auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
+        data={"from": "Excited User <excited@samples.mailgun.org>",
+              "to": ["delagarzaguerra@gmail.com"],
+              "subject": "Hello",
+              "text": "Testing some Mailgun awesomeness!"})
+
 	@classmethod
 	def find_needing_update(cls, minutes_since_update=AlertConstants.ALERT_TIMEOUT):
 		last_updated_limit = datetime.datetime.utcnow() -datetime.timedelta(minutes=minutes_since_update)
-		return [cls(**elem) for elem in Database.find(AlertConstants.COLLECTION,
+
+		instancelist = [cls(**elem) for elem in Database.find(AlertConstants.COLLECTION,
 													 {"last_checked":
 													 	 {"$lte":last_updated_limit}
 														})]
+
+		return instancelist
 
 	def save_to_mongo(self):
 		Database.update(AlertConstants.COLLECTION,{"_id":self._id}, self.json())
@@ -44,7 +57,7 @@ class Alert(object):
 		"price_limit":self.price_limit,
 		"last_checked":self.last_checked,
 		"user_email":self.user_email,
-		"item_id":self.item._i\
+		"item_id":self.item._id
 	}
 
 	def load_item_price(self):
@@ -54,6 +67,18 @@ class Alert(object):
 		return self.item.price
 
 	def send_email_if_price_reached(self):
-		if self.item.price < self.price_limit:
-			self.send();
 
+		if self.item.price < self.price_limit:
+			print("It was lower.")
+			self.send_simple_message()
+
+
+	def send_simple_message():
+		return 
+		requests.post(
+        "https://api.mailgun.net/v3/samples.mailgun.org/messages",
+        auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
+        data={"from": "Excited User <excited@samples.mailgun.org>",
+              "to": ["delagarzaguerra@gmail.com"],
+              "subject": "Hello",
+              "text": "Testing some Mailgun awesomeness!"})

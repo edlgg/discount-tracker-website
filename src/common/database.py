@@ -26,4 +26,4 @@ class Database(object):
 
     @staticmethod
     def update(collection, query, data):
-        Database.DATABASE[collection.update(query, data, upsert=True)]
+        Database.DATABASE[collection].update(query, data, upsert=True)
