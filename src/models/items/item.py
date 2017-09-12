@@ -21,7 +21,7 @@ class Item(object):
 		return "<Item {} with URL {}>".format(self.name, self.url)
 
 	def load_price(self):
-		"""
+		
 		request = requests.get(self.url)
 		content = request.content
 		soup = BeautifulSoup(content, "html.parser")
@@ -31,8 +31,8 @@ class Item(object):
 		pattern = re.compile("(\d+.\d+)") #$115.00
 		match = pattern.search(string_price)
 		self.price = float(match.group())
-		"""
-		self.price=10;
+		
+		#self.price=10;
 		return self.price
 
 	def save_to_mongo(self):

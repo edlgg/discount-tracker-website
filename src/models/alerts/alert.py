@@ -68,21 +68,8 @@ class Alert(object):
 		return self.item.price
 
 	def send_email_if_price_reached(self):
-		pass
-		#if self.item.price < self.price_limit:
-			#print("It was lower.")
-			#self.send_simple_message()
-
-
-	def send_simple_message():
-		return 
-		requests.post(
-        "https://api.mailgun.net/v3/samples.mailgun.org/messages",
-        auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-        data={"from": "Excited User <excited@samples.mailgun.org>",
-              "to": ["delagarzaguerra@gmail.com"],
-              "subject": "Hello",
-              "text": "Testing some Mailgun awesomeness!"})
+		if self.item.price < self.price_limit:
+			self.send_simple_message()
 
 	@classmethod
 	def find_by_user_email(cls, user_email):
