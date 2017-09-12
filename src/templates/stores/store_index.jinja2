@@ -1,0 +1,18 @@
+{%extends "base.jinja2" %} {% block content %}
+
+<div class="page-header">
+    <h1>Stores <small>supported stores</small></h1>    
+</div>
+<dic class="list-group">
+    {%for store in stores%}
+        <a href="{{url_for('stores.store_page', store_id=store._id)}}" class="list-group-item">
+            <h4 class="list-group-item-title">{{store.name}}</h4>
+            <p class="list-group-item-text">All URL's in this store should start with <strong>{{store.url_prefix}}</strong></p>
+        </a>
+    {%endfor%}
+</dic>
+<br />
+<a class="btn btn-success" href="{{url_for('stores.create_store')}}">
+    <span class="glyphicon glyphicon-plus"></span> Create new
+</a>
+{% endblock %}
