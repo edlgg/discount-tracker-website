@@ -10,7 +10,7 @@ class Store(object):
 		self.url_prefix = url_prefix
 		self.tag_name = tag_name
 		self.query = query
-		self._id = u uid.uuid4().hexif _id is None else _id
+		self._id = uuid.uuid4().hex if _id is None else _id
 
 	def __repr__(self):
 		return "<store {}>".format(self.name)

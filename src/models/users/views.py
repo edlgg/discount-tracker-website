@@ -37,8 +37,8 @@ def register_user():
 
 @user_blueprint.route('/alerts')
 def user_alerts():
-    user = User.find_by_email(email = session['email'])
-    alerts = user.get_alerts
+    user = User.find_by_email(session['email'])
+    alerts = user.get_alerts()
 
     return render_template('users/alerts.jinja2', alerts = alerts)
 
