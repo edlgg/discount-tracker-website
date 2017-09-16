@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from common.database import Database
+from src.common.database import Database
 
 __author__ = "edlgg"
 
