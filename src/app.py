@@ -4,8 +4,8 @@ from src.common.database import Database
 __author__ = "edlgg"
 
 app = Flask(__name__)
-app.config.from_object('config')
-app.secret_key = "123"
+app.config.from_object('src.config')
+app.secret_key = "nfd5f9a963658asdft"
 
 @app.before_first_request
 def init_db():
