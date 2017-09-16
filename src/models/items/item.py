@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 import re
-from common.database import Database
-import models.items.constants as ItemConstants
+from src.common.database import Database
+import src.models.items.constants as ItemConstants
 import uuid
-from models.stores.store import Store
+from src.models.stores.store import Store
 
 class Item(object):
 
