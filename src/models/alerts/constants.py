@@ -1,7 +1,7 @@
-URL = "https://api.mailgun.net/v3/sandbox"
-API_KEY = "key-90dcd814f2c9d3ef5480992b1e6b3295"
-FROM = "postmaster@sandboxde24c27df47549d1857667675719d60f.mailgun.org"
+import os
 
+URL = os.environ.get('MAILGUN_URL')
+API_KEY = os.environ.get('MAILGUN_API_KEY')
+FROM = os.environ.get('MAILGUN_FROM')
 ALERT_TIMEOUT = 10
-
 COLLECTION = "alerts"
