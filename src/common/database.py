@@ -5,7 +5,7 @@ __author__ = "edlgg"
 
 class Database(object):
 
-    URI = os.environ['MONGOLAB_URI']
+    URI = os.environ.get("MONGOLAB_URI")
     #URI = os.environ['MONGOLAB_URI']
     DATABASE = None
 
