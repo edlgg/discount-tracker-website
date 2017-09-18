@@ -5,13 +5,13 @@ __author__ = "edlgg"
 
 class Database(object):
 
-    URI = os.environ.get("MONGOLAB_URI")
+    URI = os.environ['MONGOLAB_URI']
     DATABASE = None
 
     @staticmethod
     def initialize():
         client = pymongo.MongoClient(Database.URI)
-        Database.DATABASE = "heroku_q93fqr67"
+        Database.DATABASE = client.get_default_database()
 
     @staticmethod
     def insert(collection, data):
